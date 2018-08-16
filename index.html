@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculando notas</title>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+  <script type="text/javascript">
+    function mandar(){
+      $(resultado).empty();
+      calcular();
+    }
+    function calcular(){
+      var valor = document.getElementById("valor").value;
+      var sobra = valor;
+      var cem = 0;
+      var cinquenta = 0;
+      var vinte = 0;
+      var dez = 0;
+      var cinco = 0;
+      var dois = 0;
+      var mod = sobra % 2;
+      if(sobra != 0) {
+        if(mod == 1) {
+            cinco++;
+            sobra -= 5;
+        }
+        while(sobra >= 100) {
+            cem++;
+            sobra -= 100;
+        }
+        while(sobra >= 50) {
+            cinquenta++;
+            sobra -= 50;
+        }
+        while(sobra >= 20) {
+            vinte++;
+            sobra -= 20;
+        }
+        while(sobra >= 10) {
+            dez++;
+            sobra -= 10;
+        }
+        while(sobra >= 2) {
+            dois++;
+            sobra -= 2;
+        }
+      }else{
+        valor = 0;
+      }
+      var resultado = "<p>O valor digitado foi: " + valor +
+      "<br><br>A quantidade de notas 100 é: " + cem +
+      "<br>A quantidade de notas 50 é: " + cinquenta +
+      "<br>A quantidade de notas 20 é: " + vinte +
+      "<br>A quantidade de notas 10 é: " + dez +
+      "<br>A quantidade de notas 5 é: " + cinco +
+      "<br>A quantidade de notas 2 é: " + dois+"</p>";
+      $(resultado).appendTo("#resultado");
+    }
+  </script>
+  <style type="text/css">
+    #conteudo{
+      width: 70%;
+      height: 500px;
+      padding-top: 100px;
+      margin: 0 auto;
+      font-size: 20px;
+    }
+    #conteudo input{
+      border-radius: 10px;
+      width: 50%;
+      height: 30px;
+      margin: 0 auto;
+      text-align: center;
+      margin-left: 25%;
+      font-size: 20px;
+    }
+    #conteudo button{
+      border-radius: 5px;
+      margin-left: 45%;
+      margin-top: 10px;
+      font-size: 20px;
+    }
+    #resultado{
+      text-align: center;
+      font-size: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div id="conteudo">
+    <input type="number" name="valor" min="0" placeholder="Digite ou escolha o valor à calcular" id="valor"><br>
+    <button onclick="mandar()">Calcular</button>
+    <div id="resultado"></div>
+  </div>
+</body>
+</html>
